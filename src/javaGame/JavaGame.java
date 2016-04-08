@@ -16,16 +16,28 @@ public class JavaGame extends JFrame{
 		public void keyPressed(KeyEvent e){
 			int keyCode = e.getKeyCode();
 			if(keyCode == e.VK_LEFT){
-				x--;
+				if(x <= 0)
+					x = 0;
+				else
+					x += -5;
 			}
 			if(keyCode == e.VK_RIGHT){
-				x++;
+				if(x >= getWidth() - 20)
+					x = getWidth() - 20;
+				else
+					x += 5;
 			}
 			if(keyCode == e.VK_UP){
-				y--;
+				if(y <= 20)
+					y = 20;
+				else
+					y += -5;
 			}
 			if(keyCode == e.VK_DOWN){
-				y++;
+				if(y >= getWidth() - 20)
+					y = getWidth() - 20;
+				else
+					y += 5;
 			}
 		}
 		public void keyReleased(KeyEvent e){
