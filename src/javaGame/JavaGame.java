@@ -1,5 +1,7 @@
 package javaGame;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
@@ -11,6 +13,9 @@ public class JavaGame extends JFrame{
 	int x, y;
 	private Image dbImage;
 	private Graphics dbg;
+	
+	Font font = new Font("Arial", Font.BOLD | Font.ITALIC, 
+			30);
 	
 	public class AL extends KeyAdapter{
 		public void keyPressed(KeyEvent e){
@@ -51,6 +56,7 @@ public class JavaGame extends JFrame{
 		setSize(250, 250);
 		setResizable(false);
 		setVisible(true);
+		setBackground(Color.CYAN);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		x = 150; 
@@ -65,6 +71,10 @@ public class JavaGame extends JFrame{
 	}
 	
 	public void paintComponent(Graphics g){
+		g.setFont(font);
+		g.setColor(Color.MAGENTA);
+		g.drawString("Hello World!", 50, 50);
+		g.setColor(Color.red);
 		g.fillOval(x, y, 15, 15);
 		
 		repaint();
