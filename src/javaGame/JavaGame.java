@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class JavaGame extends JFrame{
@@ -13,6 +15,7 @@ public class JavaGame extends JFrame{
 	int x, y;
 	private Image dbImage;
 	private Graphics dbg;
+	Image face;
 	
 	Font font = new Font("Arial", Font.BOLD | Font.ITALIC, 
 			30);
@@ -51,6 +54,10 @@ public class JavaGame extends JFrame{
 	}
 	
 	public JavaGame(){
+		//Load images
+		ImageIcon i = new ImageIcon("E:/workspace/face.gif");
+		face = i.getImage();
+		//Game properties
 		addKeyListener(new AL());
 		setTitle("Java Game");
 		setSize(250, 250);
@@ -71,11 +78,7 @@ public class JavaGame extends JFrame{
 	}
 	
 	public void paintComponent(Graphics g){
-		g.setFont(font);
-		g.setColor(Color.MAGENTA);
-		g.drawString("Hello World!", 50, 50);
-		g.setColor(Color.red);
-		g.fillOval(x, y, 15, 15);
+		g.drawImage(face, x, y, this);
 		
 		repaint();
 	}
