@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,6 +17,7 @@ public class JavaGame extends JFrame implements Runnable{
 	int x, y, xDirection, yDirection;
 	private Image dbImage;
 	private Graphics dbg;
+	boolean mouseOnScreen;
 	Image face;
 	
 	public void run(){
@@ -92,12 +95,34 @@ public class JavaGame extends JFrame implements Runnable{
 		}
 	}
 	
+	public class Mouse extends MouseAdapter{
+		@Override
+		public void mousePressed(MouseEvent e){
+			int xCoord = e.getX();
+			int yCoord = e.getY();
+			x = xCoord - 7;
+			y = yCoord - 7;
+		}
+		@Override
+		public void mouseReleased(MouseEvent e){
+			
+		}
+		public void mouseEntered(MouseEvent e){
+			mouseOnScreen = true;
+		}
+		public void mouseExited(MouseEvent e){
+			mouseOnScreen = false;
+		}
+	
+	}
+	
 	public JavaGame(){
 		//Load images
 		ImageIcon i = new ImageIcon("E:/workspace/face.gif");
 		face = i.getImage();
 		//Game properties
 		addKeyListener(new AL());
+		addMouseListener(new Mouse());
 		setTitle("Java Game");
 		setSize(250, 250);
 		setResizable(false);
@@ -117,8 +142,11 @@ public class JavaGame extends JFrame implements Runnable{
 	}
 	
 	public void paintComponent(Graphics g){
-		g.drawImage(face, x, y, this);
-		
+		g.fillOval(x,  y, 15, 15);
+		g.setColor(Color.red);
+		if(mouseOnScreen){
+			g.drawString("Coord: (" + x + ", " + y + ")", 150, 150);
+		}
 		repaint();
 	}
 	
