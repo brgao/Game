@@ -10,12 +10,51 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class JavaGame extends JFrame{
+public class JavaGame extends JFrame implements Runnable{
 	
-	int x, y;
+	int x, y, xDirection, yDirection;
 	private Image dbImage;
 	private Graphics dbg;
 	Image face;
+	
+	public void run(){
+		try{
+			while(true){
+				
+				move();
+				
+				Thread.sleep(10);
+			}
+		}
+		catch(Exception e){
+			System.out.println("Error");
+		}
+	}
+	
+	public void move(){
+		x += xDirection;
+		y += yDirection;
+		if(x <= 0){
+			x = 0;
+		}
+		if(x >= 220){
+			x = 220;
+		}
+		if(y <= 28){
+			y = 28;
+		}
+		if(y >= 220){
+			y = 220;
+		}
+	}
+	
+	public void setXDir(int xdir){
+		xDirection = xdir;
+	}
+	
+	public void setYDir(int ydir){
+		yDirection = ydir;
+	}
 	
 	Font font = new Font("Arial", Font.BOLD | Font.ITALIC, 
 			30);
@@ -24,32 +63,32 @@ public class JavaGame extends JFrame{
 		public void keyPressed(KeyEvent e){
 			int keyCode = e.getKeyCode();
 			if(keyCode == e.VK_LEFT){
-				if(x <= 0)
-					x = 0;
-				else
-					x += -5;
+				setXDir(-1);
 			}
 			if(keyCode == e.VK_RIGHT){
-				if(x >= getWidth() - 20)
-					x = getWidth() - 20;
-				else
-					x += 5;
+				setXDir(1);
 			}
 			if(keyCode == e.VK_UP){
-				if(y <= 20)
-					y = 20;
-				else
-					y += -5;
+				setYDir(-1);
 			}
 			if(keyCode == e.VK_DOWN){
-				if(y >= getWidth() - 20)
-					y = getWidth() - 20;
-				else
-					y += 5;
+				setYDir(1);
 			}
 		}
 		public void keyReleased(KeyEvent e){
-			
+			int keyCode = e.getKeyCode();
+			if(keyCode == e.VK_LEFT){
+				setXDir(0);
+			}
+			if(keyCode == e.VK_RIGHT){
+				setXDir(0);
+			}
+			if(keyCode == e.VK_UP){
+				setYDir(0);
+			}
+			if(keyCode == e.VK_DOWN){
+				setYDir(0);
+			}
 		}
 	}
 	
@@ -84,7 +123,10 @@ public class JavaGame extends JFrame{
 	}
 	
 	public static void main(String[] args){
-		new JavaGame();
+		JavaGame jg = new JavaGame();
+		//Threads
+		Thread t1 = new Thread(jg);
+		t1.start();
 	}
 	
 	
