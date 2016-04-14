@@ -150,12 +150,14 @@ public class JavaGame extends JFrame implements Runnable{
 		repaint();
 	}
 	
+	/*
 	public static void main(String[] args){
 		JavaGame jg = new JavaGame();
 		//Threads
 		Thread t1 = new Thread(jg);
 		t1.start();
 	}
+	*/
 	
 	
 	
