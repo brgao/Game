@@ -29,17 +29,16 @@ public class Mouse extends JFrame implements MouseMotionListener{
 	}
 	
 	public void paintComponent(Graphics g){
-		if(mouseDragged){
-			g.setColor(Color.darkGray);
-			g.fillRect(0, 0, getWidth(), getHeight());
-			g.setColor(Color.lightGray);
-			g.fillRect(mx, my, 20, 20);
-		}
-		else{
-			g.setColor(Color.lightGray);
-			g.fillRect(0, 0, getWidth(), getHeight());
-			g.setColor(Color.darkGray);
-			g.fillRect(mx, my, 20, 20);
+		Rectangle r1 = new Rectangle(mx, my, 25, 25);
+		Rectangle r2 = new Rectangle(175, 75, 50, 50);
+		g.setColor(Color.RED);
+		g.fillRect(r2.x, r2.y, r2.width, r2.height);
+		g.setColor(Color.BLUE);
+		g.fillRect(r1.x, r1.y, r1.width, r1.height);
+		
+		//Collision
+		if(r1.intersects(r2)){
+			g.drawString("Collision!!", 175, 75);
 		}
 		
 		repaint();
