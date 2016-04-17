@@ -6,6 +6,8 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
+
+//1
 public class Mouse extends JFrame implements MouseMotionListener{
 	private Image dbImage;
 	private Graphics dbg;
