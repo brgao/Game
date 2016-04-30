@@ -7,14 +7,12 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 
 
-//123456789101112
 public class Mouse extends JFrame implements MouseMotionListener{
 	private Image dbImage;
 	private Graphics dbg;
 	int mx, my;
 	boolean mouseDragged;
 	
-	//comment 244
 	public Mouse(){
 		setSize(400, 300);
 		setVisible(true);
