@@ -13,6 +13,7 @@ public class Mouse extends JFrame implements MouseMotionListener{
 	int mx, my;
 	boolean mouseDragged;
 	
+	//Should modify
 	public Mouse(){
 		setSize(400, 300);
 		setVisible(true);
