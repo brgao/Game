@@ -63,6 +63,7 @@ public class Ship implements Runnable {
            }
        }
     }
+    //comment
     public void keyReleased (KeyEvent e){
         int keyCode = e.getKeyCode();
         if (keyCode ==e.VK_LEFT){
