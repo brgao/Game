@@ -37,6 +37,7 @@ public class Ball implements Runnable {
 		yDirection = ydir;
 	}
 	
+	//It's mother's day
 	public void move(){
 		ball.x += xDirection;
 		ball.y += yDirection;
